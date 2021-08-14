@@ -1,24 +1,31 @@
-import logo from './logo.svg';
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import NavBar from "./NavBar.js";
+import Form from "./Form.js";
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <NavBar />
+      <main>
+        <Switch>
+          <Route exact path="/"></Route>
+          <Route exact path="/jobs">
+            <Form title="jobs"></Form>
+          </Route>
+          <Route exact path="/companies">
+            <Form title="companies"></Form>
+          </Route>
+          <Route exact path="/jobs/:id"></Route>
+          <Route exact path="/companies/:id"></Route>
+          <Route>
+            <p>Hmmm. I can't seem to find what you want.</p>
+          </Route>
+        </Switch>
+      </main>
+    </BrowserRouter>
+  </div>
   );
 }
 
