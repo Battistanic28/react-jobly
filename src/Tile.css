@@ -1,0 +1,7 @@
+.info-tile {
+    background-color: lightsteelblue;
+    border-style: solid;
+    border-color: black;
+    margin: .5rem;
+    width: 20%;
+}
