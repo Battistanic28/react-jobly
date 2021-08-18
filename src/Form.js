@@ -1,13 +1,8 @@
 import React, {useState} from "react";
-import { Link, useLocation, useParams } from "react-router-dom";
-// import queryString from "query-string";
+import { Link } from "react-router-dom";
 
 
 function Form(props) {
-
-    const params = useParams()
-    // const {search} = useLocation();
-    // const values = queryString.parse(search)
 
     
     const initialState = {
@@ -29,10 +24,6 @@ function Form(props) {
         const handleSubmit = (e) => {
             e.preventDefault();
             console.log("submitted")
-            console.log(`/${props.title}/${name}`)
-            // const {title, addItem} = props
-            // addItem(title, formData)
-            // setFormData(initialState)
         }
 
     return(
@@ -42,8 +33,6 @@ function Form(props) {
             <form>
                 <label htmlFor="search">Search:</label>
                 <input name="name" value={name} onChange={handleChange} />
-                <label htmlFor="range">Range:{range}</label>
-                <input type="range" name="range" value={range} onChange={handleChange} />
                 <Link to={`/${props.title}/${name}`}>
                 <button onClick={handleSubmit}>Find!</button>
                 </Link>

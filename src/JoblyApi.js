@@ -12,12 +12,12 @@ class JoblyApi {
 
   static async getJobs() {
     const result = await axios.get(`${BASE_API_URL}/jobs`);
-    return result.data;
+    return result.data.jobs;
   }
 
   static async getCompanies() {
-    const result = await axios.get(`${BASE_API_URL}/comapnies`);
-    return result.data;
+    const result = await axios.get(`${BASE_API_URL}/companies`);
+    return result.data.companies;
   }
 
 }

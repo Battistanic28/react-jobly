@@ -1,13 +1,16 @@
 import { React, useState, useEffect } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import NavBar from "./NavBar.js";
+import Login from "./Login";
+import Signup from "./Signup";
 import Form from "./Form.js";
 import TileList from "./TileList.js";
 import JoblyApi from "./JoblyApi.js";
-import './App.css';
+import './styles/App.css';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
+  const [companies, setCompanies] = useState();
   const [jobs, setJobs] = useState();
 
   useEffect(() => {
@@ -19,15 +22,18 @@ function App() {
     getJobs();
   }, []);
 
+  useEffect(() => {
+    async function getCompanies() {
+      let companies = await JoblyApi.getCompanies();
+      setCompanies(companies);
+      setIsLoading(false)
+    }
+    getCompanies();
+  }, []);
+
   if (isLoading) {
     return <p>Loading &hellip;</p>;
   }
-
-  // async function getJobs() {
-  //   const jobs = await JoblyApi.getJobs();
-  //   setJobs(jobs);
-  // }
-  // getJobs()
 
 
   return (
@@ -38,15 +44,21 @@ function App() {
         <Switch>
           <Route exact path="/"></Route>
           <Route exact path="/jobs">
-            <Form title="jobs"></Form>
+            <TileList values={jobs} title="jobs"></TileList>
           </Route>
           <Route exact path="/companies">
-            <Form title="companies"></Form>
+            <TileList values={companies} title="companies"></TileList>
           </Route>
           <Route exact path="/jobs/:id">
-            <TileList jobs={jobs.jobs}></TileList>
           </Route>
-          <Route exact path="/companies/:id"></Route>
+          <Route exact path="/companies/:id">
+          </Route>
+          <Route exact path="/login">
+            <Login></Login>
+          </Route>
+          <Route exact path="/signup">
+            <Signup></Signup>
+          </Route>
           <Route>
             <p>Hmmm. I can't seem to find what you want.</p>
           </Route>
