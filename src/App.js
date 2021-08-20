@@ -1,11 +1,11 @@
 import { React, useState, useEffect } from "react";
-import { BrowserRouter, Route, Switch, useParams } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import NavBar from "./NavBar.js";
-import Login from "./Login";
-import Signup from "./Signup";
-import CompanyDetail from "./CompanyDetail";
-import CardList from "./CardList.js";
-import JoblyApi from './api.js';
+import Login from "./auth/Login";
+import Signup from "./auth/Signup";
+import CompanyDetail from "./companies/CompanyDetail";
+import CardList from "./common/CardList.js";
+import JoblyApi from './API/api.js';
 import './styles/App.css';
 
 
@@ -21,7 +21,7 @@ function App() {
       setIsLoading(false);
     }
     getJobs();
-  },[jobs]);
+  },[]);
 
   useEffect(() => {
     async function getCompanies() {
@@ -30,7 +30,12 @@ function App() {
       setIsLoading(false);
     }
     getCompanies();
-  },[companies]); 
+  },[]); 
+
+  async function search(query) {
+    let results = await JoblyApi.getCompany(query)
+    setCompanies(results);
+}
 
   if (isLoading) {
     return <p>Loading &hellip;</p>;

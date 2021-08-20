@@ -1,6 +1,6 @@
-import { React, useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import "./styles/Card.css";
+import "../styles/Card.css";
 
 function CompanyCard(props) {
 
@@ -9,7 +9,7 @@ function CompanyCard(props) {
 
     return(
         <Link to={`/${title}/${handle}`}>
-        <div className="info-tile" id={handle}>
+        <div className="info-tile">
             <h3>{name}</h3>
             <p>{description}</p>
         </div>
