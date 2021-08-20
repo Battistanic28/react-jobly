@@ -1,5 +1,5 @@
 .tile-container {
-    display: flex;
+    display:flexbox;
     flex-wrap: wrap;
     justify-content: center;
 }

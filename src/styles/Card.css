@@ -2,6 +2,11 @@
     background-color: lightsteelblue;
     border-style: solid;
     border-color: black;
-    margin: .5rem;
-    width: 20%;
+    margin: auto;
+    margin-top: .5rem;
+    width: 90%;
+}
+
+a {
+    text-decoration: none;
 }
