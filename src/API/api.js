@@ -53,9 +53,12 @@ class JoblyApi {
   }
 // Register new user
   static async registerUser(data) {
-    const res = await this.request("auth/register/", data, "post");
-    console.log(res)
-    return res.data;
+    try {
+      const res = await this.request("auth/register/", data, "post");
+      return res;
+    } catch (err) {
+      return err;
+    }
   }
 
   // obviously, you'll add a lot here ...
