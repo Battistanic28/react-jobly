@@ -1,45 +1,16 @@
-import { React, useState, useEffect } from "react";
+import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import NavBar from "./NavBar.js";
 import Login from "./auth/Login";
 import Signup from "./auth/Signup";
 import CompanyDetail from "./companies/CompanyDetail";
-import CardList from "./common/CardList.js";
-import JoblyApi from './API/api.js';
+import CompanyList from "./companies/CompanyList.js";
+import JobList from "./jobs/JobList.js";
+import Homepage from "./common/Homepage.js";
 import './styles/App.css';
 
 
 function App() {
-  const [isLoading, setIsLoading] = useState(true);
-  const [companies, setCompanies] = useState();
-  const [jobs, setJobs] = useState();
-
-  useEffect(() => {
-    async function getJobs() {
-      let jobs = await JoblyApi.getJobs();
-      setJobs(jobs);
-      setIsLoading(false);
-    }
-    getJobs();
-  },[]);
-
-  useEffect(() => {
-    async function getCompanies() {
-      let companies = await JoblyApi.getCompanies();
-      setCompanies(companies);
-      setIsLoading(false);
-    }
-    getCompanies();
-  },[]); 
-
-  async function search(query) {
-    let results = await JoblyApi.getCompany(query)
-    setCompanies(results);
-}
-
-  if (isLoading) {
-    return <p>Loading &hellip;</p>;
-  }
 
   return(
     <div className="App">
@@ -47,15 +18,17 @@ function App() {
       <NavBar />
       <main>
         <Switch>
-          <Route exact path="/"></Route>
+          <Route exact path="/">
+            <Homepage />
+          </Route>
           <Route exact path="/companies">
-            <CardList values={companies} title="companies"></CardList>
+            <CompanyList></CompanyList>
           </Route>
           <Route exact path="/jobs">
-            <CardList values={jobs} title="jobs"></CardList>
+            <JobList></JobList>
           </Route>
           <Route exact path="/companies/:handle">
-              <CompanyDetail />
+            <CompanyDetail />
           </Route>
           <Route exact path="/login">
             <Login></Login>

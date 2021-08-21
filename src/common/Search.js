@@ -2,15 +2,10 @@ import React, {useState} from "react";
 // import { Link, Redirect } from "react-router-dom";
 
 
-function Search(props) {
+function Search({searchFor}) {
 
-    
-    const initialState = {
-        search: "",
-    }
 
-    const [isSubmitted, setIsSubmitted] = useState(false);
-    const [formData, setFormData] = useState(initialState);
+    const [formData, setFormData] = useState("");
     const {name} = formData;
 
     
@@ -19,14 +14,13 @@ function Search(props) {
             setFormData(data => ({
                 ...data,
                 [name]: value
-            }))
+            }
+            ))
         }
     
         const handleSubmit = (e) => {
             e.preventDefault();
-            setIsSubmitted(true);
-            console.log("submitted")
-            console.log(name)
+            searchFor(`?name=${formData.name}`)
         }
 
     return(
