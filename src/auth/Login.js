@@ -16,6 +16,10 @@ function Login() {
                 <button>Go!</button>
                 </Link>
             </form>
+            <p>Don't have an account?</p>
+            <Link to={`/signup`}>
+            <button>Sign up!</button>
+            </Link>
         </div>
     )
 };

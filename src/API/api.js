@@ -38,7 +38,7 @@ class JoblyApi {
 
   /** Get details on a company by handle. */
   static async getCompany(handle) {
-    let res = await this.request(`companies/${handle}`);
+    const res = await this.request(`companies/${handle}`);
     return res.company;
   }
 // Get all jobs.
@@ -50,6 +50,12 @@ class JoblyApi {
   static async getCompanies(query="") {
     const res = await this.request(`companies/${query}`);
     return res.companies;
+  }
+// Register new user
+  static async registerUser(data) {
+    const res = await this.request("auth/register/", data, "post");
+    console.log(res)
+    return res.data;
   }
 
   // obviously, you'll add a lot here ...
