@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import NavBar from "./NavBar.js";
 import Login from "./auth/Login";
@@ -11,6 +11,9 @@ import './styles/App.css';
 
 
 function App() {
+
+  const [token, setToken] = useState();
+  console.log(token)
 
   return(
     <div className="App">
@@ -31,10 +34,10 @@ function App() {
             <CompanyDetail />
           </Route>
           <Route exact path="/login">
-            <Login></Login>
+            <Login setToken={setToken}></Login>
           </Route>
           <Route exact path="/signup">
-            <Signup></Signup>
+            <Signup setToken={setToken}></Signup>
           </Route>
           <Route>
             <p>Hmmm. I can't seem to find what you want.</p>
