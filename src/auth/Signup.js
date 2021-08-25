@@ -3,7 +3,7 @@ import { Link, useHistory } from "react-router-dom";
 import JoblyApi from "../API/api.js";
 
 
-function Signup({setToken}) {
+function Signup({setToken, setUser}) {
 
 const initialState = {
     username: "",
@@ -36,6 +36,7 @@ const history = useHistory();
             alert("success!")
             history.push('/companies');
             setFormData(initialState);
+            setUser(formData.username);
             setToken(res.token)
         } else {
             alert(`Error: ${res}`)

@@ -7,18 +7,21 @@ import CompanyDetail from "./companies/CompanyDetail";
 import CompanyList from "./companies/CompanyList.js";
 import JobList from "./jobs/JobList.js";
 import Homepage from "./common/Homepage.js";
+import Profile from "./common/Profile.js";
+import JoblyApi from "./API/api.js";
 import './styles/App.css';
 
 
 function App() {
 
-  const [token, setToken] = useState();
-  console.log(token)
+  const [token, setToken] = useState(localStorage.getItem('token'));
+  const [user, setUser] = useState();
+  JoblyApi.token = token;
 
   return(
     <div className="App">
     <BrowserRouter>
-      <NavBar />
+      <NavBar user={user} />
       <main>
         <Switch>
           <Route exact path="/">
@@ -27,6 +30,9 @@ function App() {
           <Route exact path="/companies">
             <CompanyList></CompanyList>
           </Route>
+          <Route exact path="/profile/:username">
+            <Profile token={token} user={user}></Profile>
+          </Route>
           <Route exact path="/jobs">
             <JobList></JobList>
           </Route>
@@ -34,10 +40,10 @@ function App() {
             <CompanyDetail />
           </Route>
           <Route exact path="/login">
-            <Login setToken={setToken}></Login>
+            <Login setToken={setToken} setUser={setUser}></Login>
           </Route>
           <Route exact path="/signup">
-            <Signup setToken={setToken}></Signup>
+            <Signup setToken={setToken} setUser={setUser}></Signup>
           </Route>
           <Route>
             <p>Hmmm. I can't seem to find what you want.</p>

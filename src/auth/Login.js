@@ -3,7 +3,7 @@ import { Link, useHistory } from "react-router-dom";
 import JoblyApi from "../API/api.js";
 
 
-function Login({setToken}) {
+function Login({setToken, setUser}) {
 
     const initialState = {
         username: "",
@@ -27,13 +27,13 @@ function Login({setToken}) {
         async function handleSubmit(e) {
             e.preventDefault();
             let res = await JoblyApi.loginUser(formData);
-            console.log(res)
             if (res.token) {
                 alert("success!")
                 history.push('/companies');
                 setFormData(initialState);
                 localStorage.setItem('token', res.token);
-                setToken(res.token)
+                setUser(formData.username);
+                setToken(res.token);
             } else {
                 alert(`Error: ${res}`)
             }

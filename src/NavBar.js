@@ -3,8 +3,7 @@ import "./styles/NavBar.css";
 import { NavLink } from "react-router-dom";
 import { Navbar, Nav, NavItem } from "reactstrap";
 
-function NavBar() {
-  const token = localStorage.getItem('token');
+function NavBar({user}) {
 
   function logout() {
     localStorage.clear();
@@ -23,6 +22,9 @@ function NavBar() {
             </NavItem>
             <NavItem>
               <NavLink to="/jobs">Jobs</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink to={`/profile/${user}`}>Profile</NavLink>
             </NavItem>
               <NavItem>
                 <NavLink to="/login">Login</NavLink>

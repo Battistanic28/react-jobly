@@ -13,7 +13,7 @@ const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:3001";
 class JoblyApi {
   // the token for interactive with the API will be stored here.
   static token;
-
+  
   static async request(endpoint, data = {}, method = "get") {
     console.debug("API Call:", endpoint, data, method);
 
@@ -52,11 +52,12 @@ class JoblyApi {
     const res = await this.request(`companies/${query}`);
     return res.companies;
   }
-  
+
 // Register new user
   static async registerUser(data) {
     try {
       const res = await this.request("auth/register/", data, "post");
+      console.log(res)
       return res;
     } catch (err) {
       return err;
@@ -73,12 +74,34 @@ class JoblyApi {
     }
   }
 
+  // Get user info
+  static async fetchUserData(username) {
+    try {
+      const res = await this.request(`users/${username}`, "get");
+      return res;
+    } catch (err) {
+      return err;
+    }
+  }
+
+  // Patch user info
+  static async updateUser(username, data) {
+    try {
+      const res = await this.request(`users/${username}`, data, "patch");
+      console.log(res)
+      return res;
+    } catch (err) {
+      return err;
+    }
+  }
   // obviously, you'll add a lot here ...
 }
 
 // for now, put token ("testuser" / "password" on class)
-JoblyApi.token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZ" +
-    "SI6InRlc3R1c2VyIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTU5ODE1OTI1OX0." +
-    "FtrMwBQwe6Ue-glIFgz_Nf8XxRT2YecFCiSpYL0fCXc";
+// JoblyApi.token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZ" +
+//     "SI6InRlc3R1c2VyIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTU5ODE1OTI1OX0." +
+//     "FtrMwBQwe6Ue-glIFgz_Nf8XxRT2YecFCiSpYL0fCXc";
+
+    // JoblyApi.token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkJhdHRpc3RhbmljOTAiLCJpc0FkbWluIjpmYWxzZSwiaWF0IjoxNjI5ODE0MDc1fQ.lmQrNgUazRuGHR3rnRw-xPDoc06fPCXoqG3Q07uItRQ";
 
 export default JoblyApi;
