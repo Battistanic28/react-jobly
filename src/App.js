@@ -16,6 +16,7 @@ function App() {
 
   const [token, setToken] = useState(localStorage.getItem('token'));
   const [user, setUser] = useState();
+
   JoblyApi.token = token;
 
   return(
@@ -34,7 +35,7 @@ function App() {
             <Profile token={token} user={user}></Profile>
           </Route>
           <Route exact path="/jobs">
-            <JobList></JobList>
+            <JobList user={user}></JobList>
           </Route>
           <Route exact path="/companies/:handle">
             <CompanyDetail />

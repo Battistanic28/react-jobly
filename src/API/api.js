@@ -77,7 +77,7 @@ class JoblyApi {
   // Get user info
   static async fetchUserData(username) {
     try {
-      const res = await this.request(`users/${username}`, "get");
+      const res = await this.request(`users/${username}`);
       return res;
     } catch (err) {
       return err;
@@ -88,7 +88,16 @@ class JoblyApi {
   static async updateUser(username, data) {
     try {
       const res = await this.request(`users/${username}`, data, "patch");
-      console.log(res)
+      return res;
+    } catch (err) {
+      return err;
+    }
+  }
+
+  // Apply for job
+  static async apply(username, jobId) {
+    try {
+      const res = await this.request(`users/${username}/jobs/${jobId}`,{} ,"post");
       return res;
     } catch (err) {
       return err;

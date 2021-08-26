@@ -1,4 +1,5 @@
 import { React, useState, useEffect } from "react";
+import JobCard from '../jobs/JobCard.js'
 import EditProfile from './EditProfile.js';
 import JoblyApi from '../API/api.js';
 
@@ -7,6 +8,7 @@ function Profile({user, token}) {
 
     const [isLoading, setIsLoading] = useState(true);
     const [userData, setUserData] = useState();
+
     
     useEffect(() => {
         async function getUserData() {
@@ -22,7 +24,12 @@ function Profile({user, token}) {
     } 
 
     return(
+        <>
         <EditProfile userData={userData} />
+        {userData.applications.map(app => (
+            <JobCard key={app.id} value={app} title={app}></JobCard>
+        ))}
+        </>
     )
 }
 
