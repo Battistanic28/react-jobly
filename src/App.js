@@ -22,7 +22,7 @@ function App() {
   return(
     <div className="App">
     <BrowserRouter>
-      <NavBar user={user} />
+      <NavBar />
       <main>
         <Switch>
           <Route exact path="/">
