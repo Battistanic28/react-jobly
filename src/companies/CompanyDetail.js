@@ -3,6 +3,7 @@ import {useParams} from "react-router-dom";
 import JobCard from "../jobs/JobCard.js";
 import JoblyApi from '../API/api.js';
 
+
 function CompanyDetail() {
 
     const [isLoading, setIsLoading] = useState(true);

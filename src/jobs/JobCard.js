@@ -1,8 +1,12 @@
 import { React, useState } from "react";
 import JoblyApi from "../API/api";
+import jwt from "jsonwebtoken";
 import "../styles/Card.css";
 
 function JobCard(props) {
+
+    const token = localStorage.getItem('token');
+    const {username} = jwt.decode(token);
 
     const [Apply, setApply] = useState("Apply")
 
@@ -12,8 +16,7 @@ function JobCard(props) {
 
     async function apply(e) {
         const jobId = e.target.id;
-        const username = props.user;
-        const res = await JoblyApi.apply(username, jobId)
+        await JoblyApi.apply(username, jobId)
         toggle();
     }
 

@@ -4,7 +4,7 @@ import JoblyApi from "../API/api.js";
 import "../styles/CardList.css";
 
 
-function JobList({user}) {
+function JobList() {
 
     const [isLoading, setIsLoading] = useState(true);
     const [jobs, setJobs] = useState();
@@ -25,7 +25,7 @@ function JobList({user}) {
     return(
         <div className="tile-container">
             {jobs.map(job => (
-                <JobCard user={user} key={job.id} value={job} title="jobs"></JobCard>
+                <JobCard key={job.id} value={job} title="jobs"></JobCard>
             ))}
         </div>
     )
