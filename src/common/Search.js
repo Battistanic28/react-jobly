@@ -1,6 +1,5 @@
 import React, {useState} from "react";
-// import { Link, Redirect } from "react-router-dom";
-
+import "../styles/Search.css";
 
 function Search({searchFor}) {
 
@@ -23,7 +22,7 @@ function Search({searchFor}) {
             searchFor(`?name=${formData.name}`)
         }
 
-    return(
+    return(        
         <div>
             <form>
                 <label htmlFor="search">Search Companies: </label>

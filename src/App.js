@@ -22,7 +22,7 @@ function App() {
   return(
     <div className="App">
     <BrowserRouter>
-      <NavBar />
+      <NavBar setToken={setToken}/>
       <main>
         <Switch>
           <Route exact path="/">

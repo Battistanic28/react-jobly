@@ -1,29 +1,32 @@
 import React from "react";
 import "./styles/NavBar.css";
 import { NavLink } from "react-router-dom";
-import { Navbar, Nav, NavItem } from "reactstrap";
+import { NavbarBrand, Navbar, Nav, NavItem } from "reactstrap";
+import "./styles/NavBar.css"
 import jwt from "jsonwebtoken";
 
 
-function NavBar() {
+function NavBar({setToken}) {
 
   const token = localStorage.getItem('token');
   
   function logout() {
-    localStorage.clear();
+    setToken(localStorage.clear());
     alert("You have been logged out.")
+    
   }
   
   if(token) {
-    
+
     const {username} = jwt.decode(token);
     return (
       <div>
         <Navbar expand="md">
-          <NavLink exact to="/" className="navbar-brand">
-            Jobly
-          </NavLink>
+          <NavbarBrand href="/">Jobly</NavbarBrand>
           <Nav className="mr-auto" navbar>
+          <NavItem>
+              <NavLink to={`/profile/${username}`}>{username}</NavLink>
+            </NavItem>
             <NavItem>
               <NavLink to="/companies">Companies</NavLink>
             </NavItem>
@@ -31,16 +34,7 @@ function NavBar() {
               <NavLink to="/jobs">Jobs</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink to={`/profile/${username}`}>Profile</NavLink>
-            </NavItem>
-              <NavItem>
-                <NavLink to="/login">Login</NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink to="/signup">Signup</NavLink>
-              </NavItem>
-            <NavItem>
-              <NavLink onClick={logout} to="/login">Logout</NavLink>
+              <NavLink onClick={logout} to="/">Logout</NavLink>
             </NavItem>
           </Nav>
         </Navbar>
