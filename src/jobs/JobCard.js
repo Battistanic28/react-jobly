@@ -1,5 +1,6 @@
 import { React, useState } from "react";
-import { Card, CardImg, Button, CardBody, CardTitle } from 'reactstrap';
+import { Card, Button, CardBody, CardTitle } from 'reactstrap';
+import { Redirect } from "react-router";
 import JoblyApi from "../API/api";
 import jwt from "jsonwebtoken";
 import "../styles/Card.css";
@@ -7,7 +8,6 @@ import "../styles/Card.css";
 function JobCard(props) {
 
     const token = localStorage.getItem('token');
-    const {username} = jwt.decode(token);
 
     const [Apply, setApply] = useState("Apply")
 
@@ -16,9 +16,15 @@ function JobCard(props) {
     }
 
     async function apply(e) {
-        const jobId = e.target.id;
-        await JoblyApi.apply(username, jobId)
-        toggle();
+        if (token) {
+            const {username} = jwt.decode(token);
+            const jobId = e.target.id;
+            await JoblyApi.apply(username, jobId)
+            toggle();
+        } else {
+            alert("Please log in first.")
+        }
+
     }
 
 
@@ -29,7 +35,7 @@ function JobCard(props) {
             <Card className="info-tile">
                 <CardTitle tag="h4">{title}</CardTitle>
                 <CardBody>{`Salary: $${Number(salary).toLocaleString()}`}</CardBody>
-                <Button outline color="secondary" id={id} onClick={apply}>{Apply}</Button>
+                <Button outline color="primary" id={id} onClick={apply}>{Apply}</Button>
             </Card>
         )
 }
