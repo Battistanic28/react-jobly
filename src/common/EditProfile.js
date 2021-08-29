@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import { Card, CardTitle, CardHeader, Button, Form, Label, Input } from 'reactstrap';
 import { useHistory } from "react-router-dom";
-import "../styles/Profile.css";
+// import "../styles/Profile.css";
 import JoblyApi from "../API/api.js";
 
 
@@ -46,7 +46,7 @@ function EditProfile({userData}) {
             <div className="form-div">
                 <Card className="form-card">
                 <CardHeader>
-                    <CardTitle tag="h5">Edit Profile</CardTitle>
+                    <CardTitle tag="h5">{`Edit ${userData.username}`}</CardTitle>
                 </CardHeader>
                 <Form>
                     <Label htmlFor="fname">First Name:</Label>
@@ -77,7 +77,7 @@ function EditProfile({userData}) {
                             value={password}
                             onChange={handleChange}>
                         </Input>
-                    <Button onClick={handleSubmit}>Go!</Button>
+                    <Button color="primary" onClick={handleSubmit}>Go!</Button>
                 </Form>
                 </Card>
             </div>

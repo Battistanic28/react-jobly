@@ -1,9 +1,7 @@
 import { React, useState } from "react";
 import { Card, Button, CardBody, CardTitle } from 'reactstrap';
-import { Redirect } from "react-router";
 import JoblyApi from "../API/api";
 import jwt from "jsonwebtoken";
-import "../styles/Card.css";
 
 function JobCard(props) {
 
@@ -35,7 +33,7 @@ function JobCard(props) {
             <Card className="info-tile">
                 <CardTitle tag="h4">{title}</CardTitle>
                 <CardBody>{`Salary: $${Number(salary).toLocaleString()}`}</CardBody>
-                <Button outline color="primary" id={id} onClick={apply}>{Apply}</Button>
+                <Button className="apply-btn" outline color="primary" id={id} onClick={apply}>{Apply}</Button>
             </Card>
         )
 }

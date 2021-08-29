@@ -1,8 +1,9 @@
 import { React, useState, useEffect } from "react";
-import JobCard from '../jobs/JobCard.js'
+// import JobCard from '../jobs/JobCard.js'
 import EditProfile from './EditProfile.js';
 import JoblyApi from '../API/api.js';
 import jwt from "jsonwebtoken";
+import "../styles/Profile.css";
 
 
 function Profile() {
@@ -29,9 +30,9 @@ function Profile() {
     return(
         <>
         <EditProfile userData={userData} />
-        {userData.applications.map(app => (
+        {/* {userData.applications.map(app => (
             <JobCard key={app.id} value={app} title={app}></JobCard>
-        ))}
+        ))} */}
         </>
     )
 }

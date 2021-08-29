@@ -6,14 +6,15 @@
     width: 75%;
 }
 
-.card-body {
-    margin: auto;
-    width: 75%;
+.card a {
+    text-decoration: none;
+    color: black;
 }
 
-a {
-    text-decoration: none;
+.card a:hover {
+    color: #0d6efd;
 }
+
 div {
     text-align: center;
 }
@@ -22,8 +23,8 @@ h4 {
     padding-top: .5rem;
 }
 
-button {
-    margin: auto;
+.apply-btn {
     width: 25%;
+    margin: auto;
     margin-bottom: .5rem;
 }

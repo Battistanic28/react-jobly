@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import NavBar from "./NavBar.js";
+import NavBar from "./common/NavBar.js";
 import Login from "./auth/Login";
 import Signup from "./auth/Signup";
 import CompanyDetail from "./companies/CompanyDetail";

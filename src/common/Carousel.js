@@ -12,19 +12,19 @@ const items = [
   {
     src: 'https://media.istockphoto.com/photos/portrait-of-mature-businesswoman-in-open-plan-office-with-business-picture-id1137070812?k=20&m=1137070812&s=612x612&w=0&h=hXzYFD7gQp51zZZxW56WAFPHbNrhc1WJFpzzaObT6_A=',
     altText: 'Slide 1',
-    caption: 'I love my new job!',
+    caption: '"I love my new job!"',
     name: '-Vanessa P'
   },
   {
     src: 'https://media.istockphoto.com/photos/mid-adult-businessman-at-work-picture-id1150504096?k=20&m=1150504096&s=612x612&w=0&h=Hqp44ZIDsnIB79yEVSiUQNO-MiCvSbBMNkrODNsHm_I=',
     altText: 'Slide 2',
-    caption: 'Jobly made the job hunt so easy!',
+    caption: '"Jobly made the job hunt so easy!"',
     name: '-Paul S'
   },
   {
     src: 'https://media.istockphoto.com/photos/business-people-working-in-the-office-picture-id1085389362?k=20&m=1085389362&s=612x612&w=0&h=hbU3DymQHqY5YsgkkZsW3f9vB7MEh2LuZhwKUuP4uaI=',
     altText: 'Slide 3',
-    caption: 'I really enjoy my new coworkers!',
+    caption: '"I really enjoy my new coworkers!"',
     name: '-Aubrey C'
   }
 ];

@@ -42,9 +42,10 @@ function Login({setToken, setUser}) {
         }
 
     return(
-        <div className="form-div">
         <Card>
-            <CardTitle tag="h3">Login</CardTitle>
+            <CardHeader>
+            <CardTitle tag="h4">Login</CardTitle>
+            </CardHeader>
             <Form>
                 <Label htmlFor="Username">Username:</Label>
                 <Input 
@@ -67,7 +68,6 @@ function Login({setToken, setUser}) {
             <Button color="primary">Sign up!</Button>
             </Link>
         </Card>
-        </div>
     )
 };
 

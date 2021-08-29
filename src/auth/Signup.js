@@ -2,7 +2,6 @@ import React, {useState} from "react";
 import { Link, useHistory } from "react-router-dom";
 import { Card, CardTitle, CardHeader, Button, Form, Label, Input } from 'reactstrap';
 import JoblyApi from "../API/api.js";
-import "../styles/Form.css";
 
 
 
@@ -49,7 +48,9 @@ const history = useHistory();
 
     return(
         <Card>
+            <CardHeader>
             <CardTitle tag="h4">Signup</CardTitle>
+            </CardHeader>
             <Form>
                 <Label htmlFor="username">Username:</Label>
                 <Input 
@@ -86,11 +87,11 @@ const history = useHistory();
                     value={email}
                     onChange={handleChange}>
                 </Input>
-                <Button onClick={handleSubmit}>Go!</Button>
+                <Button color="primary" onClick={handleSubmit}>Go!</Button>
             </Form>
             <p>Already have an account?</p>
             <Link to={`/login`}>
-            <Button>Login!</Button>
+            <Button color="primary">Login!</Button>
             </Link>
         </Card>
     )

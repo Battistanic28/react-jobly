@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, CardImg, Button, CardHeader, CardFooter, CardBody, CardTitle, CardText } from 'reactstrap';
+import { Card, CardBody, CardTitle } from 'reactstrap';
 import { Link } from "react-router-dom";
 import "../styles/Card.css";
 
@@ -10,13 +10,12 @@ function CompanyCard(props) {
 
 
     return(
-        <Link to={`/${title}/${handle}`}>
-            <Card className="info-tile">
-                {/* <CardImg>{image}</CardImg> */}
+        <Card className="info-tile">
+                <Link to={`/${title}/${handle}`}>
                 <CardTitle tag="h4">{name}</CardTitle>
                 <CardBody className="card-body">{description}</CardBody>
+                </Link>
             </Card>
-        </Link>
     )
 }
 

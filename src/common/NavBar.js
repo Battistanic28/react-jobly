@@ -1,9 +1,8 @@
 import React from "react";
-import "./styles/NavBar.css";
 import { NavLink } from "react-router-dom";
-import { NavbarBrand, Navbar, Nav, NavItem, Alert } from "reactstrap";
-import "./styles/NavBar.css"
+import { Navbar, Nav, NavItem } from "reactstrap";
 import jwt from "jsonwebtoken";
+import "../styles/NavBar.css";
 
 
 function NavBar({setToken}) {
@@ -20,9 +19,11 @@ function NavBar({setToken}) {
     const {username} = jwt.decode(token);
     return (
       <div>
-        <Navbar color="light" light expand="md">
-          <NavbarBrand href="/">Jobly</NavbarBrand>
-          <Nav className="ml-auto" navbar>
+        <Navbar expand="md">
+          <NavLink exact to="/" className="navbar-brand">
+            Jobly
+          </NavLink>
+          <Nav className="mr-auto" navbar>
             <NavItem>
               <NavLink to={`/profile/${username}`}>{username}</NavLink>
             </NavItem>

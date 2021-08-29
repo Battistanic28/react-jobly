@@ -11,6 +11,7 @@
 }
 
 form {
+    margin: auto;
     display: inline-block;
     padding: .5rem;
 }
