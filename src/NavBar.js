@@ -21,9 +21,9 @@ function NavBar({setToken}) {
     const {username} = jwt.decode(token);
     return (
       <div>
-        <Navbar expand="md">
+        <Navbar color="light" light expand="md">
           <NavbarBrand href="/">Jobly</NavbarBrand>
-          <Nav className="mr-auto" navbar>
+          <Nav className="ml-auto" navbar>
           <NavItem>
               <NavLink to={`/profile/${username}`}>{username}</NavLink>
             </NavItem>

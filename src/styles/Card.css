@@ -1,13 +1,26 @@
 
 .info-tile {
-    background-color: lightsteelblue;
-    border-style: solid;
-    border-color: black;
+    background-color: #F5F5F5;
     margin: auto;
-    margin-top: .5rem;
+    margin-top: 1rem;
     width: 90%;
+}
+
+.card-body {
+    margin: auto;
+    width: 75%;
 }
 
 a {
     text-decoration: none;
+}
+
+h4 {
+    padding-top: .5rem;
+}
+
+button {
+    margin: auto;
+    width: 50%;
+    margin-bottom: .5rem;
 }

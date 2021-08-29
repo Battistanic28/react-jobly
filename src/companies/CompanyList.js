@@ -2,7 +2,6 @@ import { React, useState, useEffect } from "react";
 import Search from "../common/Search.js"
 import CompanyCard from "../companies/CompanyCard.js";
 import JoblyApi from "../API/api.js";
-import "../styles/CardList.css";
 
 
 function CompanyList() {

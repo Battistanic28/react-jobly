@@ -1,5 +1,7 @@
 import React, {useState} from "react";
+import { Card, CardTitle, CardHeader, Button, Form, Label, Input } from 'reactstrap';
 import { useHistory } from "react-router-dom";
+import "../styles/Profile.css";
 import JoblyApi from "../API/api.js";
 
 
@@ -41,39 +43,43 @@ function EditProfile({userData}) {
 
 
         return(
-            <div>
-                <h1>Edit Profile</h1>
-                <form>
-                    <label htmlFor="fname">First Name:</label>
-                    <input 
-                        type="text"
-                        name="firstName"
-                        value={firstName}
-                        onChange={handleChange}>
-                    </input>
-                    <label htmlFor="lname">Last Name:</label>
-                    <input 
-                        type="text"
-                        name="lastName"
-                        value={lastName}
-                        onChange={handleChange}>
-                    </input>
-                    <label htmlFor="password">Password:</label>
-                    <input 
-                        type="password"
-                        name="password"
-                        value={password}
-                        onChange={handleChange}>
-                    </input>
-                    <label htmlFor="email">Email:</label>
-                    <input 
-                        type="text"
-                        name="email"
-                        value={email}
-                        onChange={handleChange}>
-                    </input>
-                    <button onClick={handleSubmit}>Go!</button>
-                </form>
+            <div className="form-div">
+                <Card className="form-card">
+                <CardHeader>
+                    <CardTitle tag="h5">Edit Profile</CardTitle>
+                </CardHeader>
+                <Form>
+                    <Label htmlFor="fname">First Name:</Label>
+                        <Input 
+                            type="text"
+                            name="firstName"
+                            value={firstName}
+                            onChange={handleChange}>
+                        </Input>
+                    <Label htmlFor="lname">Last Name:</Label>
+                        <Input 
+                            type="text"
+                            name="lastName"
+                            value={lastName}
+                            onChange={handleChange}>
+                        </Input>
+                    <Label htmlFor="email">Email:</Label>
+                        <Input 
+                            type="text"
+                            name="email"
+                            value={email}
+                            onChange={handleChange}>
+                        </Input>
+                    <Label htmlFor="password">Password:</Label>
+                        <Input 
+                            type="password"
+                            name="password"
+                            value={password}
+                            onChange={handleChange}>
+                        </Input>
+                    <Button onClick={handleSubmit}>Go!</Button>
+                </Form>
+                </Card>
             </div>
         )
     };

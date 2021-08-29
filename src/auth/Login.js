@@ -1,6 +1,8 @@
 import React, {useState} from "react";
 import { Link, useHistory } from "react-router-dom";
+import { Card, CardTitle, CardHeader, Button, Form, Label, Input } from 'reactstrap';
 import JoblyApi from "../API/api.js";
+import "../styles/Form.css";
 
 
 function Login({setToken, setUser}) {
@@ -40,29 +42,31 @@ function Login({setToken, setUser}) {
         }
 
     return(
-        <div>
-            <h1>Login</h1>
-            <form>
-                <label htmlFor="Username">Username:</label>
-                <input 
+        <div className="form-div">
+        <Card>
+            <CardTitle tag="h3">Login</CardTitle>
+            <Form>
+                <Label htmlFor="Username">Username:</Label>
+                <Input 
                     type="text"
                     name="username"
                     value={username}
                     onChange={handleChange}>
-                    </input>
-                <label htmlFor="Password">Password:</label>
-                <input 
+                    </Input>
+                <Label htmlFor="Password">Password:</Label>
+                <Input 
                     type="password"
                     name="password"
                     value={password}
                     onChange={handleChange}>
-                </input>
-                <button onClick={handleSubmit}>Go!</button>
-            </form>
+                </Input>
+                <Button color="primary" onClick={handleSubmit}>Go!</Button>
+            </Form>
             <p>Don't have an account?</p>
             <Link to={`/signup`}>
-            <button>Sign up!</button>
+            <Button color="primary">Sign up!</Button>
             </Link>
+        </Card>
         </div>
     )
 };

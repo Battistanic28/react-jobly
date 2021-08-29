@@ -1,6 +1,9 @@
 import React, {useState} from "react";
 import { Link, useHistory } from "react-router-dom";
+import { Card, CardTitle, CardHeader, Button, Form, Label, Input } from 'reactstrap';
 import JoblyApi from "../API/api.js";
+import "../styles/Form.css";
+
 
 
 function Signup({setToken, setUser}) {
@@ -45,51 +48,51 @@ const history = useHistory();
 
 
     return(
-        <div>
-            <h1>Signup</h1>
-            <form>
-                <label htmlFor="username">Username:</label>
-                <input 
+        <Card>
+            <CardTitle tag="h4">Signup</CardTitle>
+            <Form>
+                <Label htmlFor="username">Username:</Label>
+                <Input 
                     type="text"
                     name="username"
                     value={username}
                     onChange={handleChange}>
-                </input>
-                <label htmlFor="password">Password:</label>
-                <input 
+                </Input>
+                <Label htmlFor="password">Password:</Label>
+                <Input 
                     type="password"
                     name="password"
                     value={password}
                     onChange={handleChange}>
-                </input>
-                <label htmlFor="fname">First Name:</label>
-                <input 
+                </Input>
+                <Label htmlFor="fname">First Name:</Label>
+                <Input 
                     type="text"
                     name="firstName"
                     value={firstName}
                     onChange={handleChange}>
-                </input>
-                <label htmlFor="lname">Last Name:</label>
-                <input 
+                </Input>
+                <Label htmlFor="lname">Last Name:</Label>
+                <Input 
                     type="text"
                     name="lastName"
                     value={lastName}
                     onChange={handleChange}>
-                </input>
-                <label htmlFor="email">Email:</label>
-                <input 
+                </Input>
+                <Label htmlFor="email">Email:</Label>
+                <Input 
                     type="text"
                     name="email"
                     value={email}
                     onChange={handleChange}>
-                </input>
-                <button onClick={handleSubmit}>Go!</button>
-            </form>
+                </Input>
+                <Button onClick={handleSubmit}>Go!</Button>
+            </Form>
             <p>Already have an account?</p>
             <Link to={`/login`}>
-            <button>Login!</button>
+            <Button>Login!</Button>
             </Link>
-        </div>
+        </Card>
     )
 };
 

@@ -1,7 +1,6 @@
 import { React, useState, useEffect } from "react";
 import JobCard from "../jobs/JobCard.js";
 import JoblyApi from "../API/api.js";
-import "../styles/CardList.css";
 
 
 function JobList() {

@@ -1,5 +1,6 @@
 import React, {useState} from "react";
-import "../styles/Search.css";
+import { Col, Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import "../styles/Form.css";
 
 function Search({searchFor}) {
 
@@ -24,11 +25,13 @@ function Search({searchFor}) {
 
     return(        
         <div>
-            <form>
-                <label htmlFor="search">Search Companies: </label>
-                <input name="name" value={name} onChange={handleChange} />
-                <button onClick={handleSubmit}>Find!</button>
-            </form>
+            <Form>
+                <FormGroup row>
+                <Label htmlFor="search">Search Companies: </Label>
+                <Input name="name" value={name} onChange={handleChange} />
+                <Button onClick={handleSubmit}>Find!</Button>
+                </FormGroup>
+            </Form>
         </div>
     )
 
