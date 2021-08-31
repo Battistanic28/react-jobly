@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import NavBar from "./common/NavBar.js";
 import Login from "./auth/Login";
@@ -8,49 +8,66 @@ import CompanyList from "./companies/CompanyList.js";
 import JobList from "./jobs/JobList.js";
 import Homepage from "./common/Homepage.js";
 import Profile from "./common/Profile.js";
+import UserContext from "./auth/UserContext";
 import JoblyApi from "./API/api.js";
 import './styles/App.css';
 
 
 function App() {
 
+  const [userData, setUserData] = useState();
+
   const [token, setToken] = useState(localStorage.getItem('token'));
   const [user, setUser] = useState();
+  const [applications, setApplications] = useState([]);
+
+  useEffect(() => {
+    async function getUserData() {
+      let response = await JoblyApi.fetchUserData(user);
+      setUserData(response.user);
+      console.log(userData)
+    }
+    getUserData();
+},[user]);
+
 
   JoblyApi.token = token;
 
   return(
     <div className="App">
     <BrowserRouter>
-      <NavBar setToken={setToken}/>
-      <main>
-        <Switch>
-          <Route exact path="/">
-            <Homepage />
-          </Route>
-          <Route exact path="/companies">
-            <CompanyList></CompanyList>
-          </Route>
-          <Route exact path="/profile/:username">
-            <Profile token={token} user={user}></Profile>
-          </Route>
-          <Route exact path="/jobs">
-            <JobList user={user}></JobList>
-          </Route>
-          <Route exact path="/companies/:handle">
-            <CompanyDetail />
-          </Route>
-          <Route exact path="/login">
-            <Login setToken={setToken} setUser={setUser}></Login>
-          </Route>
-          <Route exact path="/signup">
-            <Signup setToken={setToken} setUser={setUser}></Signup>
-          </Route>
-          <Route>
-            <p>Hmmm. I can't seem to find what you want.</p>
-          </Route>
-        </Switch>
-      </main>
+      <UserContext.Provider
+          value={{token, user, applications, setApplications, userData}}>
+        <NavBar setToken={setToken}/>
+        <main>
+          <Switch>
+            <Route exact path="/">
+              <Homepage />
+            </Route>
+            <Route exact path="/companies">
+              <CompanyList></CompanyList>
+            </Route>
+            <Route exact path="/profile/:username">
+              <Profile token={token} user={user}></Profile>
+            </Route>
+            <Route exact path="/jobs">
+              <JobList user={user}></JobList>
+            </Route>
+            <Route exact path="/companies/:handle">
+              <CompanyDetail />
+            </Route>
+            <Route exact path="/login">
+              <Login setToken={setToken} setUser={setUser}></Login>
+            </Route>
+            <Route exact path="/signup">
+              <Signup setToken={setToken} setUser={setUser}></Signup>
+            </Route>
+            <Route>
+              <p>Hmmm. I can't seem to find what you want.</p>
+            </Route>
+          </Switch>
+        </main>
+        </UserContext.Provider>
     </BrowserRouter>
   </div>
 )

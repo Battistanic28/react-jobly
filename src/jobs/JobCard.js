@@ -1,41 +1,49 @@
-import { React, useState } from "react";
+import { React, useState, useContext, useEffect } from "react";
 import { Card, Button, CardBody, CardTitle } from 'reactstrap';
 import JoblyApi from "../API/api";
-import jwt from "jsonwebtoken";
+import UserContext from "../auth/UserContext";
+
 
 function JobCard(props) {
 
-    const token = localStorage.getItem('token');
+    const {token, user, applications, setApplications, userData} = useContext(UserContext);
+    const [appStatus, setAppStatus] = useState();
+    const {id, title, salary} = props.value;    
 
-    const [Apply, setApply] = useState("Apply")
-
-    function toggle() {
-        return (Apply === "Apply" ? setApply("Applied!") : setApply("Apply"))
+    function hasApplied(id) {
+        console.log(applications)
+        return applications.includes(id)
     }
 
-    async function apply(e) {
-        if (token) {
-            const {username} = jwt.decode(token);
-            const jobId = e.target.id;
-            await JoblyApi.apply(username, jobId)
-            toggle();
-        } else {
-            alert("Please log in first.")
-        }
-
-    }
-
-
+    useEffect(function updateApplicationStatus() {
+        setAppStatus(hasApplied(id));
+    }, [id, hasApplied]);
     
-        const {id, title, salary} = props.value;
-        
-        return(
-            <Card className="info-tile">
-                <CardTitle tag="h4">{title}</CardTitle>
-                <CardBody>{`Salary: $${Number(salary).toLocaleString()}`}</CardBody>
-                <Button className="apply-btn" outline color="primary" id={id} onClick={apply}>{Apply}</Button>
-            </Card>
-        )
+    async function apply(e) {
+        if (hasApplied(id)) return;
+            const jobId = e.target.id;
+            await JoblyApi.apply(user, jobId)
+            setApplications([...applications, jobId])
+            setAppStatus(true);
+    }
+    
+    
+    return(
+        <Card className="info-tile">
+            <CardTitle tag="h4">{title}</CardTitle>
+            <CardBody>{`Salary: $${Number(salary).toLocaleString()}`}</CardBody>
+            {token &&                
+                <Button 
+                    className="apply-btn" 
+                    outline color="primary" 
+                    id={id} 
+                    onClick={apply}
+                    disabled={appStatus}>
+                    {appStatus ? "Applied!" : "Apply"}
+                </Button>
+                }
+        </Card>
+    )
 }
 
 export default JobCard;

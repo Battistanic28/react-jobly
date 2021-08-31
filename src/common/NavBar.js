@@ -1,13 +1,15 @@
-import React from "react";
+import React, {useContext} from "react";
 import { NavLink } from "react-router-dom";
 import { Navbar, Nav, NavItem } from "reactstrap";
 import jwt from "jsonwebtoken";
 import "../styles/NavBar.css";
+import UserContext from "../auth/UserContext";
+
 
 
 function NavBar({setToken}) {
 
-  const token = localStorage.getItem('token');
+  const {token} = useContext(UserContext);
   
   function logout() {
     setToken(localStorage.clear());

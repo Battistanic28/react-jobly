@@ -6,7 +6,7 @@ import JoblyApi from "../API/api.js";
 
 
 function EditProfile({userData}) {
-
+    console.log(userData.applications)
     const initialState = {
         password: "",
         firstName: userData.firstName,
