@@ -6,25 +6,24 @@ import UserContext from "../auth/UserContext";
 
 function JobCard(props) {
 
-    const {token, user, applications, setApplications, userData} = useContext(UserContext);
-    const [appStatus, setAppStatus] = useState();
-    const {id, title, salary} = props.value;    
+    const {token, user, userData} = useContext(UserContext);
+    const [applied, setApplied] = useState();
+    const {id, title, salary} = props.value;   
+    const {applications} = userData;
+    
 
     function hasApplied(id) {
-        console.log(applications)
         return applications.includes(id)
     }
 
     useEffect(function updateApplicationStatus() {
-        setAppStatus(hasApplied(id));
-    }, [id, hasApplied]);
+        setApplied(hasApplied(id));
+    }, [id, hasApplied, userData]);
     
     async function apply(e) {
-        if (hasApplied(id)) return;
             const jobId = e.target.id;
             await JoblyApi.apply(user, jobId)
-            setApplications([...applications, jobId])
-            setAppStatus(true);
+            setApplied(true);
     }
     
     
@@ -38,8 +37,8 @@ function JobCard(props) {
                     outline color="primary" 
                     id={id} 
                     onClick={apply}
-                    disabled={appStatus}>
-                    {appStatus ? "Applied!" : "Apply"}
+                    disabled={applied}>
+                    {applied ? "Applied!" : "Apply"}
                 </Button>
                 }
         </Card>

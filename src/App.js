@@ -15,29 +15,17 @@ import './styles/App.css';
 
 function App() {
 
-  const [userData, setUserData] = useState();
-
+  
   const [token, setToken] = useState(localStorage.getItem('token'));
   const [user, setUser] = useState();
-  const [applications, setApplications] = useState([]);
-
-  useEffect(() => {
-    async function getUserData() {
-      let response = await JoblyApi.fetchUserData(user);
-      setUserData(response.user);
-      console.log(userData)
-    }
-    getUserData();
-},[user]);
-
-
+  const [userData, setUserData] = useState();
   JoblyApi.token = token;
-
+  
   return(
     <div className="App">
     <BrowserRouter>
       <UserContext.Provider
-          value={{token, user, applications, setApplications, userData}}>
+          value={{token, user, userData}}>
         <NavBar setToken={setToken}/>
         <main>
           <Switch>
@@ -57,7 +45,7 @@ function App() {
               <CompanyDetail />
             </Route>
             <Route exact path="/login">
-              <Login setToken={setToken} setUser={setUser}></Login>
+              <Login setToken={setToken} setUser={setUser} setUserData={setUserData}></Login>
             </Route>
             <Route exact path="/signup">
               <Signup setToken={setToken} setUser={setUser}></Signup>

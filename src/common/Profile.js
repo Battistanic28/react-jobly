@@ -3,7 +3,7 @@ import { React, useState, useEffect } from "react";
 import EditProfile from './EditProfile.js';
 import JoblyApi from '../API/api.js';
 import jwt from "jsonwebtoken";
-import "../styles/Profile.css";
+import "../styles/Form.css";
 
 
 function Profile() {
@@ -28,12 +28,7 @@ function Profile() {
     } 
 
     return(
-        <>
         <EditProfile userData={userData} />
-        {/* {userData.applications.map(app => (
-            <JobCard key={app.id} value={app} title={app}></JobCard>
-        ))} */}
-        </>
     )
 }
 

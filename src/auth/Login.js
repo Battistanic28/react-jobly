@@ -1,17 +1,18 @@
-import React, {useState} from "react";
+import React, {useState, useContext} from "react";
 import { Link, useHistory } from "react-router-dom";
 import { Card, CardTitle, CardHeader, Button, Form, Label, Input } from 'reactstrap';
 import JoblyApi from "../API/api.js";
-import "../styles/Form.css";
+import UserContext from "../auth/UserContext";
 
 
-function Login({setToken, setUser}) {
+function Login({setToken, setUser, setUserData}) {
 
     const initialState = {
         username: "",
         password: ""
     }
-    
+
+    // const {setUserData} = useContext(UserContext);
     const [formData, setFormData] = useState(initialState);
     const {username, password} = formData;
     const history = useHistory();
@@ -36,6 +37,9 @@ function Login({setToken, setUser}) {
                 localStorage.setItem('token', res.token);
                 setUser(formData.username);
                 setToken(res.token);
+
+                let data = await JoblyApi.fetchUserData(formData.username);
+                setUserData(data.user);
             } else {
                 alert(`Error: ${res}`)
             }
