@@ -20,12 +20,12 @@ function App() {
   const [user, setUser] = useState();
   const [userData, setUserData] = useState();
   JoblyApi.token = token;
-  
+
   return(
     <div className="App">
     <BrowserRouter>
       <UserContext.Provider
-          value={{token, user, userData}}>
+          value={{token, user, userData, setUserData}}>
         <NavBar setToken={setToken}/>
         <main>
           <Switch>
@@ -45,7 +45,7 @@ function App() {
               <CompanyDetail />
             </Route>
             <Route exact path="/login">
-              <Login setToken={setToken} setUser={setUser} setUserData={setUserData}></Login>
+              <Login setToken={setToken} setUser={setUser} setUserData={setUserData} userData={userData}></Login>
             </Route>
             <Route exact path="/signup">
               <Signup setToken={setToken} setUser={setUser}></Signup>
