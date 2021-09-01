@@ -9,11 +9,9 @@ function JobCard(props) {
     const {token, user, userData, setUserData} = useContext(UserContext);
     const [applied, setApplied] = useState();
     const {id, title, salary} = props.value;   
-    const {applications} = userData;
-    
 
     function hasApplied(id) {
-        return applications.includes(id);
+        return userData.applications.includes(id);
     }
 
     useEffect(function updateApplicationStatus() {

@@ -28,7 +28,7 @@ function Search({searchFor}) {
             <Form >
                 <Label htmlFor="search"></Label>
                 <Input placeholder="Search companies..." name="name" value={name} onChange={handleChange} />
-                <Button color="primary" onClick={handleSubmit}>Find!</Button>
+                <Button type="submit" color="primary" onClick={handleSubmit}>Find!</Button>
             </Form>
         </div>
     )

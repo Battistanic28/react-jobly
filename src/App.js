@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, {useState} from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import NavBar from "./common/NavBar.js";
 import Login from "./auth/Login";
@@ -30,7 +30,7 @@ function App() {
         <main>
           <Switch>
             <Route exact path="/">
-              <Homepage />
+              <Homepage token={token} />
             </Route>
             <Route exact path="/companies">
               <CompanyList></CompanyList>

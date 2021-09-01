@@ -31,7 +31,6 @@ const history = useHistory();
 
     async function handleSubmit(e) {
         e.preventDefault();
-        // console.log(formData)
         let res = await JoblyApi.registerUser(formData);
         console.log(res)
         if (res.token) {

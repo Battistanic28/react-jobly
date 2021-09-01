@@ -33,10 +33,10 @@ function NavBar({setToken}) {
               <NavLink to="/companies">Companies</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink to="/jobs">Jobs</NavLink>
+              <NavLink token={token} to="/jobs">Jobs</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink onClick={logout} to="/">Logout</NavLink>
+              <NavLink exact onClick={logout} to="/">Logout</NavLink>
             </NavItem>
           </Nav>
         </Navbar>

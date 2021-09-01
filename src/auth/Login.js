@@ -1,9 +1,7 @@
-import React, {useState, useContext} from "react";
+import React, {useState} from "react";
 import { Link, useHistory } from "react-router-dom";
 import { Card, CardTitle, CardHeader, Button, Form, Label, Input } from 'reactstrap';
 import JoblyApi from "../API/api.js";
-import UserContext from "../auth/UserContext";
-
 
 function Login({setToken, setUser, setUserData}) {
 
@@ -31,7 +29,6 @@ function Login({setToken, setUser, setUserData}) {
             e.preventDefault();
             let res = await JoblyApi.loginUser(formData);
             if (res.token) {
-                alert("success!")
                 history.push('/companies');
                 setFormData(initialState);
                 localStorage.setItem('token', res.token);
@@ -65,7 +62,7 @@ function Login({setToken, setUser, setUserData}) {
                     value={password}
                     onChange={handleChange}>
                 </Input>
-                <Button color="primary" onClick={handleSubmit}>Go!</Button>
+                <Button type="submit" color="primary" onClick={handleSubmit}>Go!</Button>
             </Form>
             <p>Don't have an account?</p>
             <Link to={`/signup`}>

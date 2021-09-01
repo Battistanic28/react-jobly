@@ -76,7 +76,7 @@ function EditProfile({userData}) {
                             value={password}
                             onChange={handleChange}>
                         </Input>
-                    <Button color="primary" onClick={handleSubmit}>Go!</Button>
+                    <Button type="submit" color="primary" onClick={handleSubmit}>Go!</Button>
                 </Form>
                 </Card>
             </div>
