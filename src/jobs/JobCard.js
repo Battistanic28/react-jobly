@@ -8,7 +8,7 @@ function JobCard(props) {
 
     const {token, user, userData, setUserData} = useContext(UserContext);
     const [applied, setApplied] = useState();
-    const {id, title, salary} = props.value;   
+    const {id, title, salary, equity} = props.value;   
 
     function hasApplied(id) {
         return userData.applications.includes(id);
@@ -29,7 +29,8 @@ function JobCard(props) {
     return(
         <Card className="info-tile">
             <CardTitle tag="h4">{title}</CardTitle>
-            <CardBody>{`Salary: $${Number(salary).toLocaleString()}`}</CardBody>
+            <CardBody>{`Salary: $${Number(salary).toLocaleString()} | Equity: ${equity === null ? 0 : equity}%`}</CardBody>
+
             {token &&                
                 <Button 
                     className="apply-btn" 

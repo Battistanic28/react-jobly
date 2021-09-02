@@ -15,12 +15,23 @@ import './styles/App.css';
 
 function App() {
 
-  
+
+  const initialState = {
+    applications: [],
+    email: "",
+    firstName: "",
+    isAdmin: false,
+    lastName: "",
+    username: ""
+  }
+
   const [token, setToken] = useState(localStorage.getItem('token'));
   const [user, setUser] = useState();
-  const [userData, setUserData] = useState();
+  const [userData, setUserData] = useState(initialState);
   JoblyApi.token = token;
 
+  // Routes need to be refactored. 
+  // Should update to rely on context instead of props in most cases here.
   return(
     <div className="App">
     <BrowserRouter>

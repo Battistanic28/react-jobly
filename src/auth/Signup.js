@@ -86,7 +86,7 @@ const history = useHistory();
                     value={email}
                     onChange={handleChange}>
                 </Input>
-                <Button color="primary" onClick={handleSubmit}>Go!</Button>
+                <Button type="submit" color="primary" onClick={handleSubmit}>Go!</Button>
             </Form>
             <p>Already have an account?</p>
             <Link to={`/login`}>
