@@ -6,7 +6,11 @@ import UserContext from "../auth/UserContext";
 
 function JobCard(props) {
 
-    const {token, user, userData, setUserData} = useContext(UserContext);
+    // Defaulting to localStorage for persistant user data - Need to refactor to rely on useContext
+    const {userData, setUserData} = useContext(UserContext);
+    const token = localStorage.getItem('token');
+
+
     const [applied, setApplied] = useState();
     const {id, title, salary, equity} = props.value;   
 
@@ -19,10 +23,15 @@ function JobCard(props) {
     }, [id, hasApplied]);
     
     async function apply(e) {
+        const {username} = JSON.parse(localStorage.getItem('userData'));
         const jobId = e.target.id;
-        await JoblyApi.apply(user, jobId);
-        const updateData = await JoblyApi.fetchUserData(user);
-        setUserData(updateData.user);
+        await JoblyApi.apply(username, jobId);
+        const updateData = await JoblyApi.fetchUserData(username);
+
+        // Defaulting to localStorage for persistant user data - Need to refactor to rely on useContext
+        localStorage.setItem('userData', JSON.stringify(updateData.user));
+        const userLocalStoarage = JSON.parse(localStorage.getItem('userData'));
+        setUserData(userLocalStoarage);
     }
     
     

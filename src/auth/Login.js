@@ -37,6 +37,8 @@ function Login({setToken, setUser, setUserData}) {
 
                 let data = await JoblyApi.fetchUserData(formData.username);
                 setUserData(data.user);
+                localStorage.setItem('userData', JSON.stringify(data.user));
+        
             } else {
                 alert(`Error: ${res}`)
             }

@@ -27,7 +27,9 @@ function App() {
 
   const [token, setToken] = useState(localStorage.getItem('token'));
   const [user, setUser] = useState();
-  const [userData, setUserData] = useState(initialState);
+
+  
+  const [userData, setUserData] = useState(token ? JSON.parse(localStorage.getItem('userData')) : initialState );
   JoblyApi.token = token;
 
   // Routes need to be refactored. 

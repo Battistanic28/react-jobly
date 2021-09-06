@@ -32,13 +32,16 @@ const history = useHistory();
     async function handleSubmit(e) {
         e.preventDefault();
         let res = await JoblyApi.registerUser(formData);
-        console.log(res)
         if (res.token) {
             alert("success!")
             history.push('/companies');
             setFormData(initialState);
             setUser(formData.username);
             setToken(res.token)
+            localStorage.setItem('token', res.token);
+
+            let data = await JoblyApi.fetchUserData(formData.username);
+            localStorage.setItem('userData', JSON.stringify(data.user));
         } else {
             alert(`Error: ${res}`)
         }
